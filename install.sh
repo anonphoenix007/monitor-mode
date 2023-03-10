@@ -7,7 +7,7 @@ if [[ $UID -eq 0 ]];then
 	apt install iproute2 iw -y
         cp monitor /usr/local/bin
         echo "Installation completed\n"
-        Launch by typing "monitor" into the terminal"
+        echo "Launch by typing "monitor" into the terminal"
 elif [[ $UID -ne 0 ]];then
 	echo "You have to be root in order to switch on monitor-mode"
 	exit
