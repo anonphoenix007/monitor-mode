@@ -18,5 +18,7 @@ cd monitor-mode
 bash install.sh
 
 monitor
+![Monitor]
+(monitor.png)
 
 Use --help to view the help/usage options
