@@ -19,6 +19,6 @@ bash install.sh
 
 monitor
 ![Monitor]
-(monitor.png)
+(./monitor.png)
 
 Use --help to view the help/usage options
