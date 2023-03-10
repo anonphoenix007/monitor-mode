@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+import os
+import argparse
+import sys
+
+task1 = "Task Performed Successfully,HAPPY HACKING"
+task2 = "Goodbye Fellow"
+
+while os.name == "windows":
+      print("The tool cannot be used in a Windows OS")
+      sys.exit()
+
+while os.getuid() != 0:
+      print("The tool require root Permission,Please run as root user")
+      sys.exit()
+
+def banner():
+    os.system("clear")
+    print('''
+    ╔════════════════════════════════════════════╗
+    ║    ┏┳┓┏━┓┏┓╻╻╺┳╸┏━┓┏━┓   ┏┳┓┏━┓╺┳┓┏━╸      ║
+    ║    ┃┃┃┃ ┃┃┗┫┃ ┃ ┃ ┃┣┳┛╺━╸┃┃┃┃ ┃ ┃┃┣╸       ║
+    ║    ╹ ╹┗━┛╹ ╹╹ ╹ ┗━┛╹┗╸   ╹ ╹┗━┛╺┻┛┗━╸      ║
+    ║                             Pheonix-Gibson ║
+    ╚════════════════════════════════════════════╝
+Author's-Name=Phoenix Gibson
+version-number=2.0
+author's-mail-address=phoenixgibson007@proton.me
+''')
+
+banner()
+
+parser = argparse.ArgumentParser(prog="monitor-mode", description="A simple program to switch on/off monitor mode for user,use --wlan0 0 to switch it on on wlan0 and vice versa for wlan1,and use --off0 0 to switch it off on wlan0 and also vice versa")
+parser.add_argument("--wlan0", help="switch on monitor mode on wlan0")
+parser.add_argument("--wlan1", help="switch on monitor mode on wlan1")
+parser.add_argument("--off0", help="Switch off monitor mode on wlan0 interface")
+parser.add_argument("--off1", help="Switch off monitor mode on wlan1 interface")
+parser.add_argument("--banner", "-b", help="print the banner", action='store_true')
+args = parser.parse_args()
+
+
+def monitor_on_wlan0():
+    os.system("clear")
+    banner()
+    print(f"Starting monitor mode on wlan0 interface")
+    os.system("ip link set wlan0 down && iw wlan0 set type monitor && ip link set wlan0 up")
+    print("Monitor mode switched on successfully")
+    print(f"New interface name is wlan0")
+    print(task1)
+
+def monitor_on_wlan1():
+    os.system("clear")
+    banner()
+    print(f"Starting monitor mode on wlan1 interface")
+    os.system("ip link set wlan1 down && iw wlan1 set type monitor && ip link set wlan1 up")
+    print("Monitor mode switched on successfully")
+    print(f"New interface name is wlan1")
+    print(task1)
+
+def monitor_off0():
+    os.system("clear")
+    banner()
+    print("Switching off Monitor Mode on interface Wlan0")
+    os.system("ip link set wlan0 down && iw wlan0 set type managed && ip link set wlan0 up")
+    print(f"Monitor mode successfully switched off on interface Wlan0")
+    print(task2)
+
+def monitor_off1():
+    os.system("clear")
+    banner()
+    print("Switching off Monitor Mode on interface Wlan1")
+    os.system("ip link set wlan1 down && iw wlan1 set type managed && ip link set wlan1 up")
+    print(task2)
+
+if args.wlan0:
+    monitor_on_wlan0()
+elif args.wlan1:
+    monitor_on_wlan1()
+elif args.banner:
+    banner()
+elif args.off0:
+    monitor_off0()
+elif args.off1:
+    monitor_off1()
+else:
+    print("[-] NO option selected")
+    parser.print_help()
+    exit()
